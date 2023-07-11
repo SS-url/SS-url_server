@@ -7,7 +7,7 @@ async function bootstrap() {
   const databaseService = app.get(DatabaseService);
 
   // Connect to MongoDB
-  await databaseService.connect(process.env.MONGODB_URI, 'your-database-name');
+  await databaseService.connect(process.env.MONGODB_URI, 'SsUrlShortener');
 
   // Start the Nest.js application
   await app.listen(3000);
