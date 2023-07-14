@@ -10,19 +10,21 @@ import {
 import { Response } from 'express';
 import { UrlService } from './url.service';
 
-@Controller('url')
+@Controller('Url')
 export class UrlController {
-  constructor(private urlService: UrlService) {}
+  constructor(private readonly urlService: UrlService) {}
 
   @Post()
   async create(@Body() originalUrl: string, @Res() res: Response) {
     res.status(HttpStatus.CREATED);
-    this.urlService.shorten(originalUrl);
+    await this.urlService.shorten(originalUrl);
+    res.send('Shortened URL created successfully.');
   }
 
   @Get(':shortenUrl')
   async findOne(@Param('shortenUrl') shortenUrl: string, @Res() res: Response) {
     res.status(HttpStatus.OK);
-    this.urlService.findUrl(shortenUrl);
+    const foundUrl = await this.urlService.findUrl(shortenUrl);
+    res.send(foundUrl);
   }
 }

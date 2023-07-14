@@ -8,7 +8,7 @@ export class Url {
   @Prop({ required: true })
   originalLocation: string;
 
-  @Prop({ required: true })
+  @Prop()
   shortenLocation: string;
 }
 
